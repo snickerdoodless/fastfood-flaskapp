@@ -10,10 +10,11 @@
 
 > `JS`
 
+
 <br />
 
 
-# Pre-requisite
+# Virtual Environment
 
 ```python
 python -m venv venv
@@ -35,7 +36,7 @@ pip install -r requirements.txt
 
 <br />
 
-# Build and Deploy
+# Deploy on Apache2
 
 > [!note]
 > *OS* : *Ubuntu 22.04* 
@@ -49,17 +50,17 @@ git clone https://github.com/snickerdoodless/main_project.git
 ```
 
 ```bash
-sudo apt update ; sudo apt-get install -y apache2 libapache2-mod-wsgi-py3 mysql-server unzip python3-dev python3-pip pkg-config libmysqlclient-dev  
+sudo apt update ; sudo apt-get install -y apache2 libapache2-mod-wsgi-py3 mysql-server git unzip python3-dev python3-pip pkg-config libmysqlclient-dev  
 ```
 
 ```bash
-cd snickerdoodless/main_project/flask-fastfood-app
+cd main_project/flask-fastfood-webapp
 ```
 
 <br />
 
 > [!important]
->  Setup the root password and adjust on config.py
+>  Setup the user password and adjust on config.py
 
 <br />
 
@@ -68,7 +69,15 @@ sudo mysql -u root -p -e "CREATE DATABASE feane;"
 ```
 
 ```bash
-sudo mysqldump -u root -p feane < feane.sql
+sudo mysql -u root -p -e "CREATE USER 'feane'@'localhost' IDENTIFIED BY 'yourownpassword';"
+```
+
+```bash
+sudo mysql -u root -p -e "GRANT ALL PRIVILEGES ON feane.* TO 'feane'@'localhost';"
+```
+
+```bash
+sudo mysql -u root -p feane < feane.sql
 ```
 
 ```bash
