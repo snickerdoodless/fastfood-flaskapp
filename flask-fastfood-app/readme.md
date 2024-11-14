@@ -1,10 +1,13 @@
 
-## Tech
+# Tech
 
 
 > `MySQL 5.7`
+
 > `Python Flask`
+
 > `HTML CSS`
+
 > `JS`
 
 
