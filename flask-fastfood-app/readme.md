@@ -10,10 +10,8 @@
 
 > `JS`
 
-
 <br />
 
-<br />
 
 # Pre-requisite
 
