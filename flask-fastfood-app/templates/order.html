@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feane - My Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="nav-menu">
+            <div class="back-to-menu">
+                <a href="/menu" class="back-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="back-icon">
+                        <path d="m4.431 12.822 13 9A1 1 0 0 0 19 21V3a1 1 0 0 0-1.569-.823l-13 9a1.003 1.003 0 0 0 0 1.645z"></path>
+                    </svg>
+                    Back to Menu
+                </a>
+            </div>
+            <ul class="nav-links">
+                <a href="/dashboard">Profile</a>
+                <a class="active" href="/dashboard/order">Order</a>
+                <a href="/dashboard/reservation">Reservations</a>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <section class="reservations-section">
+                <h2>Order History</h2>
+                <div class="reservation-list">
+                    {% for order in orders %}
+                    <div class="reservation-card">
+                        <div class="reservation-header">
+                            <div>
+                                <h3>Order #{{ order.order_id }}</h3>
+                                <span class="reservation-date">{{ order.created_at.strftime('%B %d, %Y - %I:%M %p') }}</span>
+                            </div>
+                            <span class="status" style="color: {{ 'green' if order.status == 'Completed' else 'red' if order.status == 'Cancelled' else 'orange' }};">
+                                {{ order.status }}
+                            </span>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-items">
+                                {% for item in order.order_items %}
+                                <p>{{ item.quantity }}x {{ item.product_name }} - ${{ item.price }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="order-total">
+                                <p><strong>Tax:</strong> ${{ order.tax }}</p>
+                                <p><strong>Delivery Fee:</strong> ${{ order.delivery_fee }}</p>
+                                <p><strong>Total:</strong> ${{ order.total_amount }}</p>
+                            </div>
+                        </div>
+                        <div class="reservation-actions">
+                            <a href="/menu">
+                                <button class="reschedule-btn">Reorder</button>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>                
+            </section>
+        </main>
+    </div>
+</body>
+</html>

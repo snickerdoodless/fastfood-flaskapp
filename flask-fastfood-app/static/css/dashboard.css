@@ -1,0 +1,557 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    font-family: Arial;
+}
+
+/* Dashboard Styles */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    position: relative;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    width: 250px;
+    background-color: #1a1a1a;
+    padding: 20px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.logo {
+    display: none; /* Removed logo as per second CSS */
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links a {
+    display: block;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #ff9500;
+}
+
+.nav-links a.active {
+    background-color: #ff9500;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Back to Menu Button Styles */
+.back-to-menu {
+    margin-bottom: 40px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #febb29;
+}
+
+.back-icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* Styling the logout button */
+.logout-btn {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 45px; /* Set the width of the button */
+    height: 45px; /* Set the height of the button */
+    background: none; /* Make background transparent */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor to pointer */
+    padding: 8px; /* Add padding */
+    transition: transform 0.2s; /* Transition effect for transform */
+}
+
+/* Optional: Adjust the SVG size based on the button size */
+.logout-btn svg {
+    width: 100%; /* Make SVG take full width of the button */
+    height: 100%; /* Make SVG take full height of the button */
+}
+
+.logout-btn:hover {
+    transform: scale(1.1);
+}
+
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #262626;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4caf50;
+    background-color: #2d2d2d;
+}
+
+/* Button Styles */
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.save-btn, .cancel-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.save-btn {
+    background-color: #ffa600;
+    color: #333;
+}
+
+.save-btn:hover {
+    background-color: #ff9500;
+}
+
+.cancel-btn {
+    background-color: #666;
+    color: #fff;
+}
+
+.cancel-btn:hover {
+    background-color: #555;
+}
+
+/* Section Headers */
+h2 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Address Section */
+.address-section {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.address-card {
+    background: #262626;
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+    color: #f5f5f5;
+}
+
+.address-card label {
+    color: #ddd;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.address-card input,
+.address-card select,
+.address-card textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #333;
+    color: #f5f5f5;
+    outline: none;
+}
+
+.address-card input[readonly] {
+    background-color: #444;
+    color: #bbb;
+}
+
+.address-card .form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.address-card button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.address-card .save-btn {
+    background-color: #ffa600;
+    color: #333;
+    font: bold;
+}
+
+.address-card .cancel-btn {
+    background-color: #777;
+    color: #fff;
+}
+
+
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ffa600;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .save-btn, .cancel-btn {
+        width: 100%;
+    }
+}
+
+/* Reservations Section */
+.reservations-section {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 30px; /* Increased padding for more space */
+    margin-bottom: 40px;
+}
+
+h2 {
+    margin-bottom: 25px; /* Increased margin for more space below the heading */
+    font-size: 20px; /* Increased font size for better visibility */
+    color: #fff; /* Added color for better contrast */
+}
+
+.reservation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increased gap between reservation cards */
+}
+
+.reservation-card {
+    background: #262626;
+    padding: 25px; /* Increased padding for more space inside the card */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Added shadow for depth */
+}
+
+.reservation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Increased margin for more space below the header */
+}
+
+.reservation-date {
+    font-size: 16px; /* Increased font size for better readability */
+    color: #bbb; /* Changed color for better contrast */
+    height: 30px;
+}
+
+.status {
+    font-weight: bold;
+    font-size: 16px; /* Increased font size for better visibility */
+}
+
+.reservation-details {
+    margin-bottom: 15px; /* Added margin for space below details */
+    font-size: 14px; /* Adjusted font size for details */
+    color: #ccc; /* Changed color for better contrast */
+}
+
+.reservation-actions {
+    display: flex;
+    gap: 15px; /* Increased gap between action buttons */
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.cancel-btn {
+    background-color: #ff6b6b;
+}
+
+.reschedule-btn {
+    background-color: #4caf50;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .nav-menu {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+        margin: 0 5px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    
+
+    .profile-item,
+    .address-card,
+    .reservation-header,
+    .reservation-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .back-to-menu {
+        top: 10px;
+        left: 10px;
+    }
+
+    .back-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .back-icon {
+        margin-right: 5px;
+        font-size: 16px;
+    }
+
+    .cancel-btn,
+    .reschedule-btn {
+        width: 100%;
+    }
+}
+
+/* Hide Cancel Button when not eligible */
+.cancel-btn[style*="display: none;"] {
+    display: none !important;
+}
+
+/* ORDER SECTION
+/* Order History Specific Styles */
+.order-details {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-radius: 5px;
+}
+
+.order-items p {
+    margin: 8px 0;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.order-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+}
+
+.order-total p {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.reservation-header h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+/* Status Colors */
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Reorder Button Specific Style */
+.reschedule-btn {
+    background-color: #ffa600;
+    color: #333;
+    font-weight: bold;
+}
+
+.reschedule-btn:hover {
+    background-color: #ff9500;
+}
+
+/* Responsive adjustments for order history */
+@media screen and (max-width: 768px) {
+    .order-details {
+        padding: 10px;
+    }
+
+    .order-items p {
+        font-size: 0.9rem;
+    }
+
+    .order-total p {
+        font-size: 1rem;
+    }
+}
+
+.flash-messages {
+    position: fixed;
+    top: 40px; /* Distance from the top of the viewport */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+    color: white; /* Text color */
+    padding: 15px 20px; /* Padding around the text */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensure it appears above other content */
+    width: auto; /* Adjust width as needed */
+    max-width: 90%; /* Limit width to 90% of the viewport */
+    text-align: center; /* Center the text */
+    opacity: 1; /* Initial opacity */
+    animation: fadeOut 2.5s forwards; /* Start fade out animation */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; /* Fully visible */
+    }
+    80% {
+        opacity: 1; /* Remain fully visible for most of the duration */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+        display: none; /* Hide the element after fading out */
+    }
+}
+

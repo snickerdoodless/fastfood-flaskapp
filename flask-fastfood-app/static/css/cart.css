@@ -1,0 +1,137 @@
+/* Base Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header */
+header {
+  background: linear-gradient(to right, #000000, #333333); /* Dark gradient similar to image background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress Bar */
+header .flex.items-center span {
+  display: flex;
+  align-items: center;
+}
+
+header .flex.items-center .w-8.h-8.bg-red-400 {
+  background: linear-gradient(to bottom right, #f87171, #ef4444);
+}
+
+/* Common styles for Step 1 and Step 3 */
+header .flex.items-center .step-1,
+header .flex.items-center .step-3 {
+  background: #ffffff;
+  color: #ffa600; /* Match button color in image */
+}
+
+/* Persistent glowing effect for Step 2 */
+header .flex.items-center .step-2 {
+  font-weight: bold;
+  background: #ffffff;
+  color: #ffa600; /* Match button color in image */
+  box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.6); /* Glowing white effect */
+  transform: scale(1.05); /* Slightly larger to emphasize the glow */
+}
+
+/* Cart Content Container */
+.container {
+  max-height: calc(100vh - 200px); /* Adjust height based on your header/footer */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 15px; /* Optional: Add some padding to avoid content touching the scrollbar */
+}
+
+/* Cart Item Image */
+.food-item-img {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 0.375rem;
+}
+.food-item-img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Quantity Buttons */
+button.bg-red-100 {
+  background: #fddede;
+  color: #ef4444;
+  transition: transform 0.2s ease, background 0.3s ease;
+  font-weight: bold;
+}
+button.bg-red-100:hover {
+  background: #fcb6b6;
+  transform: scale(1.1);
+}
+
+/* Totals Section */
+.bg-gray-50 {
+  background: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.bg-gray-50 .flex {
+  font-weight: 500;
+}
+.bg-gray-50 .flex.font-bold.text-lg {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffa600;
+}
+
+button.checkout-btn {
+  background: linear-gradient(to right, #000000, #333333);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Glowing effect on hover */
+button.checkout-btn:hover {
+  background: linear-gradient(to right, #000000, #333333);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(139, 90, 6, 0.6), 0 0 30px rgba(58, 30, 2, 0.4); /* Soft glow effect */
+}
+
+/* Back Icon Styles */
+.back-icon {
+  fill: rgba(255, 255, 255, 1); /* White color for the icon */
+  filter: drop-shadow(0 0 5px rgba(232, 224, 224, 0.5)); /* Shadow effect */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  width: 34px; /* Adjust width of the icon */
+  height: 34px; /* Adjust height of the icon */
+  transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Optional: Add hover effect for the icon */
+.back-icon:hover {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+.header-title {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Additional Styles for Scrollbar (Optional) */
+.container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color on hover */
+}
+
+.container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
