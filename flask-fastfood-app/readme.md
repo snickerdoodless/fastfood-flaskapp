@@ -53,7 +53,7 @@ sudo apt update ; sudo apt-get install -y apache2 libapache2-mod-wsgi-py3 mysql-
 ```
 
 ```bash
-cd snickerdoodless/main_project/flask-fastfood-webapp
+cd snickerdoodless/main_project/flask-fastfood-app
 ```
 
 <br />
