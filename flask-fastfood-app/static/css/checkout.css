@@ -1,0 +1,255 @@
+    
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Header */
+  header {
+    background: linear-gradient(to right, #000000, #333333); /* Dark gradient similar to image background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Progress Bar */
+  header .flex.items-center span {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  header .flex.items-center .w-8.h-8.bg-red-400 {
+    background: linear-gradient(to bottom right, #f87171, #ef4444);
+  }
+  
+  /* Common styles for Step 1 and Step 3 */
+  header .flex.items-center .step-3 {
+    background: #ffffff;
+    color: #ffa600; /* Match button color in image */
+    font-weight: bold;
+    box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.6); 
+    transform: scale(1.05); 
+  }
+  
+  /* Persistent glowing effect for Step 2 */
+  header .flex.items-center .step-1,
+  header .flex.items-center .step-2 {
+    background: #ffffff;
+    color: #ffa600; /* Match button color in image */
+  }
+
+/* Order Summary */
+.bg-white {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+}
+
+/* Cart Item Image */
+.food-item-img {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0.375rem;
+}
+.food-item-img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Promo Code Section */
+input[type="text"] {
+    padding: 0.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.375rem;
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+input[type="text"]:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.4);
+}
+button.bg-red-600 {
+    background: linear-gradient(to right, #000000, #333333);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+button.bg-red-600:hover {
+    background: linear-gradient(to right, #151212, #433c3c);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+}
+
+/* Totals Section */
+.bg-gray-50 {
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.bg-gray-50 .flex {
+    font-weight: 500;
+}
+.bg-gray-50 .flex.font-bold.text-lg {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color:#ffa600;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="tel"],
+textarea {
+    padding: 0.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.375rem;
+    transition: border-color 0.3s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+input[type="text"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.4);
+}
+/* Payment Options */
+.payment-option {
+    width: 100%;  /* Make the payment option take full width */
+    max-width: 150px; /* Limit the maximum width */
+    height: auto; /* Let height adjust based on content */
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem; /* Add spacing between options */
+}
+
+/* Image styling */
+.payment-option img {
+    width: 100%; /* Ensure the image takes the full width */
+    height: auto; /* Let height adjust proportionally */
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.payment-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.payment-option.selected {
+    border-color: #211e1e;
+    background-color: #fef2f2;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 600px) {
+    .payment-option {
+        width: 100%; /* Make the payment option take full width on mobile */
+        max-width: 120px; /* Optionally set a smaller max-width on mobile */
+        margin: 0 auto; /* Center the options */
+    }
+
+    .payment-option img {
+        width: 80%; /* Reduce the image size on mobile */
+        height: auto;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 601px) and (max-width: 960px) {
+    .payment-option {
+        width: 45%; /* Adjust width for tablets */
+        max-width: 150px; /* Limit the maximum width */
+    }
+
+    .payment-option img {
+        width: 80%; /* Adjust width for tablets */
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    .payment-option {
+        width: 150px; /* Set a fixed width for larger screens */
+        height: 150px;
+    }
+
+    .payment-option img {
+        width: 70%; /* Adjust width for desktop */
+    }
+}
+
+
+/* Pay Now Button */
+button.w-full.bg-red-600 {
+    width: 100%;
+    background: linear-gradient(to right, #000000, #333333);
+    color: #ffffff;
+    padding: 1rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease, box-shadow 0.2s ease;
+}
+button.w-full.bg-red-600:hover {
+    background: linear-gradient(to right, #151212, #433c3c);
+    box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3);
+}
+
+
+/* Back Icon Styles */
+.back-icon {
+    fill: rgba(255, 255, 255, 1); /* White color for the icon */
+    filter: drop-shadow(0 0 5px rgba(232, 224, 224, 0.5)); /* Shadow effect */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    width: 34px; /* Adjust width of the icon */
+    height: 34px; /* Adjust height of the icon */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+  }
+  
+/* Optional: Add hover effect for the icon */
+.back-icon:hover {
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+.header-title {
+font-family: 'Dancing Script', cursive;
+}
+
+/* SUCCESS */
+@keyframes slideDown {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes checkmark {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+.slide-down {
+    animation: slideDown 0.6s ease-out forwards;
+}
+.checkmark {
+    animation: checkmark 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+}
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+}
+@keyframes confettiRain {
+    0% { transform: translateY(-100vh); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+

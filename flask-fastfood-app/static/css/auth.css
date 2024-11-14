@@ -1,0 +1,238 @@
+/* Reset dan Box Sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Gaya untuk HTML dan Body */
+  html {
+    background: #000;
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Helvetica Neue', Arial, Sans-Serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+ /* Wrapper Login dan Register */
+.login-wrap,
+.register-wrap {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95); /* Slight transparency */
+  width: 100%;
+  max-width: 450px; /* Increased max-width for more space */
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Softer, more pronounced shadow */
+  padding: 30px; /* Added padding for better spacing */
+  margin: 20px;
+  transition: all 0.3s ease; /* Smooth transition for form */
+}
+
+.login-wrap:hover,
+.register-wrap:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+/* Judul Formulir */
+.login-wrap h2,
+.register-wrap h2 {
+  text-align: center;
+  font-weight: 300;
+  font-size: 2.5em; /* Larger font size for the title */
+  color: #34495e;
+  position: relative;
+  margin: 30px 0 20px; /* Added spacing for title */
+}
+
+.login-wrap h2:after,
+.register-wrap h2:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #e74c3c;
+  border-radius: 3px;
+}
+
+/* Formulir */
+.login-wrap .form,
+.register-wrap .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+/* Input Formulir */
+.login-wrap .form input[type="text"],
+.login-wrap .form input[type="password"],
+.login-wrap .form input[type="email"],
+.register-wrap .form input[type="text"],
+.register-wrap .form input[type="password"],
+.register-wrap .form input[type="email"] {
+  width: 90%;
+  margin-bottom: 20px;
+  height: 45px;
+  border-radius: 15px; /* Curvier input fields */
+  outline: none;
+  padding: 0 15px;
+  font-size: 14px;
+  border: 2px solid #e0e0e0;
+  background: rgba(255, 255, 255, 0.9);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-wrap .form input[type="text"]:focus,
+.login-wrap .form input[type="password"]:focus,
+.login-wrap .form input[type="email"]:focus,
+.register-wrap .form input[type="text"]:focus,
+.register-wrap .form input[type="password"]:focus,
+.register-wrap .form input[type="email"]:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.1);
+}
+
+/* Tombol Formulir */
+.login-wrap .form button,
+.register-wrap .form button {
+  width: 90%;
+  background: #e74c3c;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  height: 45px; /* Matching button height with inputs */
+  border-radius: 15px; /* Curvier button */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-wrap .form button:hover,
+.register-wrap .form button:hover {
+  background: #c0392b;
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+/* Link Formulir */
+.login-wrap .form a,
+.register-wrap .form a {
+  text-align: center;
+  font-size: 14px; /* Slightly larger font size for links */
+  color: #3498db;
+  text-decoration: none;
+  margin-top: 15px; /* Added more space between button and link */
+}
+
+.login-wrap .form a:hover,
+.register-wrap .form a:hover {
+  color: #2980b9;
+}
+
+
+  /* Flash Messages */
+  .flash-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  .flash-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 20px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    text-align: center;
+    width: 90%;
+  }
+  
+/* Top gradient line on login and register forms */
+.login-wrap:after,
+.register-wrap:before {
+  content: '';
+  position: absolute;
+  top: -0.02rem; /* Move the gradient slightly above the form */
+  left: 0;
+  right: 0;
+  height: 10px; /* Increased height for more visibility */
+  background: linear-gradient(to right, #45443e, #2c2b28); /* Softer gradient colors */
+  border-radius: 10px 10px 0 0; /* Ensure the top corners are rounded */
+}
+
+  /* Responsif */
+  @media screen and (max-width: 768px) {
+    .login-wrap,
+    .register-wrap {
+      width: 100%;
+      max-width: 350px;
+    }
+  
+    .flash-message {
+      margin: 0 10px;
+    }
+  }
+
+/* Mengatur spasi untuk teks di bawah form */
+.form + p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 25px; /* Memberikan margin atas yang lebih besar */
+    margin-bottom: 10px; /* Margin bawah untuk jarak dengan elemen berikutnya */
+    color: #34495e;
+  }
+  
+  /* Mengubah gaya link untuk keterbacaan lebih baik */
+  .form + p a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .form + p a:hover {
+    color: #2980b9;
+  }
+  
+  /* Aturan responsif untuk layar kecil */
+  @media screen and (max-width: 768px) {
+    .form + p {
+      margin-top: 20px;
+      margin-bottom: 15px;
+      font-size: 13px;
+    }
+  }
+  
+/* Back to Menu Button */
+.back-to-menu {
+  position: absolute; /* Position it absolutely */
+  top: 20px; /* Distance from the top */
+  left: 20px; /* Distance from the left */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.back-btn {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  text-decoration: none; /* Remove underline */
+  background-color: transparent; /* No background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: var(--button-padding, 10px); /* Adjustable padding */
+}
+
+.back-icon {
+  margin-right: var(--icon-margin, 5px); /* Adjustable space between icon and text */
+  fill: var(--icon-color, #e74c3c); /* Adjustable icon color */
+  width: var(--icon-size, 50px); /* Adjustable icon size */
+  height: var(--icon-size, 50px); /* Adjustable icon size */
+}

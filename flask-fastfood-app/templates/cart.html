@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="shortcut icon" href="../static/images/favicon.png" type="">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+  <script src="{{ url_for('static', filename='js/cart.js') }}" defer></script>
+  
+</head>
+<body class="bg-yellow-50">
+  <div class="min-h-screen">
+    
+    <!-- Header with Progress Bar -->
+    <header class="bg-red-600 text-white py-4 shadow-lg relative">
+      <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center">
+              <!-- Back to Menu Button -->
+              <a href="/menu" class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="back-icon">
+                      <path d="m4.431 12.822 13 9A1 1 0 0 0 19 21V3a1 1 0 0 0-1.569-.823l-13 9a1.003 1.003 0 0 0 0 1.645z"></path>
+                  </svg>
+              </a>
+              <div class="flex justify-center items-center text-center header-title">
+                  <div>
+                      <h1 class="text-3xl font-bold">Feane</h1>
+                      <p class="text-sm">Fast Food. Fast Checkout. Happy You!</p>
+                  </div>
+              </div>
+              <!-- Progress Bar with Links -->
+              <div class="hidden md:flex items-center space-x-4 justify-end">
+                  <span class="flex items-center">
+                      <span class="w-8 h-8 rounded-full step-1 flex items-center justify-center">1</span>
+                      <span class="ml-2">Order</span>
+                  </span>
+                  <span class="w-8 border-t-2 border-red-400"></span>
+                  <span class="flex items-center">
+                      <!-- Step 2 with glowing effect -->
+                      <span class="w-8 h-8 rounded-full step-2 flex items-center justify-center">2</span>
+                      <span class="ml-2">Cart</span>
+                  </span>
+                  <span class="w-8 border-t-2 border-red-400"></span>
+                  <span class="flex items-center">
+                      <span class="w-8 h-8 rounded-full step-3 flex items-center justify-center">3</span>
+                      <span class="ml-2">Confirm</span>
+                  </span>
+              </div>
+          </div>
+      </div>
+    </header>
+  
+    <!-- Cart Content -->
+    <div class="container mx-auto px-4 py-8">
+      <div class="cart-content overflow-y-auto max-h-[calc(100vh-200px)]"> <!-- This div should allow scrolling -->
+        {% for item in cart_items %}
+        <div class="cart-item flex justify-between items-center border-b pb-4 mb-4" data-id="{{ item.id }}">
+          <img src="{{ item.image_url }}" alt="{{ item.name }}" class="food-item-img w-16 h-16 mr-4 rounded">
+          <span class="product-name font-semibold">{{ item.name }}</span>
+          <div class="product-controls flex items-center space-x-2">
+            <div id="cart-item-{{ item.id }}" class="cart-item">
+              <button class="remove-btn bg-red-100 text-red-600 px-3 py-1 rounded-full hover:bg-red-200" onclick="updateQuantity('{{ item.id }}', -1)">-</button>
+              <span class="quantity font-semibold" id="quantity-{{ item.id }}">{{ item.quantity }}</span>
+              <button class="add-btn bg-red-100 text-red-600 px-3 py-1 rounded-full hover:bg-red-200" onclick="updateQuantity('{{ item.id }}', 1)">+</button>
+              <span id="price-{{ item.id }}">${{ item.price * item.quantity }}</span>
+            </div>            
+          </div>
+          <span class="product-price font-bold text-gray-700" id="price-{{ item.id }}">${{ item.total_price }}</span>
+        </div>
+        {% else %}
+          <p>Your cart is empty.</p>
+        {% endfor %}
+      </div>
+    </div>
+      
+
+      <!-- Cart Summary -->
+      <div class="cart-summary mt-6 bg-gray-50 p-6 rounded-lg shadow-md">
+        <div class="summary-row flex justify-between mb-4">
+          <span>Subtotal</span>
+          <span id="subtotal">${{ subtotal }}</span>
+        </div>
+        <div class="summary-row flex justify-between mb-4">
+          <span>Delivery Fee</span>
+          <span id="deliveryFee">${{ delivery_fee }}</span>
+        </div>
+        <div class="summary-row total-row flex justify-between font-bold text-lg border-t pt-4">
+          <span>Total</span>
+          <span id="total">${{ total }}</span>
+        </div>
+        
+        <!-- Checkout Button -->
+        <button
+          class="checkout-btn w-full bg-red-600 text-white py-3 mt-6 rounded-lg font-bold hover:bg-red-700 transition duration-200"
+          id="checkoutBtn"
+          onclick="checkCartAndProceed({{ item_count }})"
+        >
+          <i class="fas fa-lock"></i> Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

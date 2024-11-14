@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feane - My Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="nav-menu">
+            <div class="back-to-menu">
+                <a href="/menu" class="back-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="back-icon">
+                        <path d="m4.431 12.822 13 9A1 1 0 0 0 19 21V3a1 1 0 0 0-1.569-.823l-13 9a1.003 1.003 0 0 0 0 1.645z"></path>
+                    </svg>
+                    Back to Menu
+                </a>
+            </div>
+            <ul class="nav-links">
+                <a href="/dashboard">Profile</a>
+                <a href="/dashboard/order">Order</a>
+                <a class="active" href="/dashboard/reservation">Reservations</a>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <section class="reservations-section">
+                <h2>Reservations</h2>
+                <div class="reservation-list">
+                    {% for reservation in reservations %}
+                    <div class="reservation-card">
+                        <div class="reservation-header">
+                            <div>
+                                <h3>Reservation #{{ reservation.reservation_id }}</h3>
+                                <p class="reservation-date">
+                                    Scheduled: 
+                                    {{ reservation.reservation_date.strftime('%B %d, %Y') }},
+                                    {{ reservation.reservation_time.strftime('%I:%M %p') }}
+                                </p>
+                                <p>Guests: {{ reservation.number_of_guests }}</p>
+                                {% if reservation.special_requests %}
+                                    <p>Special Requests: {{ reservation.special_requests }}</p>
+                                {% endif %}
+                            </div>
+                            <p class="status">Status: {{ reservation.status }}</p>
+                        </div>
+                        <div class="reservation-actions">
+                            {% if reservation.status == 'Pending' %}
+                                <button class="cancel-btn" onclick="cancelReservation({{ reservation.reservation_id }})">Cancel</button>
+                                <button class="reschedule-btn" onclick="rescheduleReservation({{ reservation.reservation_id }})">Reschedule</button>
+                            {% elif reservation.status == 'Completed' %}
+                                <button class="reschedule-btn" onclick="rescheduleReservation({{ reservation.reservation_id }})">Reschedule</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/user.js') }}" defer></script>
+</body>
+</html>

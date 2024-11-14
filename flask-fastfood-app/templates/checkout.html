@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feane Checkout</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body class="bg-yellow-50">
+    <div class="min-h-screen">
+        <!-- Header with Progress Bar -->
+        <header class="bg-red-600 text-white py-4 shadow-lg relative">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <!-- Back to Menu Button -->
+                    <a href="/cart" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="back-icon">
+                            <path d="m4.431 12.822 13 9A1 1 0 0 0 19 21V3a1 1 0 0 0-1.569-.823l-13 9a1.003 1.003 0 0 0 0 1.645z"></path>
+                        </svg>
+                    </a>
+                    <div class="flex justify-center items-center text-center header-title">
+                        <div>
+                            <h1 class="text-3xl font-bold">Feane</h1>
+                            <p class="text-sm">Fast Food. Fast Checkout. Happy You!</p>
+                        </div>
+                    </div>
+                    <!-- Progress Bar with Links -->
+                    <div class="hidden md:flex items-center space-x-4 justify-end">
+                        <span class="flex items-center">
+                            <span class="w-8 h-8 rounded-full step-1 flex items-center justify-center">1</span>
+                            <span class="ml-2">Order</span>
+                        </span>
+                        <span class="w-8 border-t-2 border-red-400"></span>
+                        <span class="flex items-center">
+                            <!-- Step 2 with glowing effect -->
+                            <span class="w-8 h-8 rounded-full step-2 flex items-center justify-center">2</span>
+                            <span class="ml-2">Cart</span>
+                        </span>
+                        <span class="w-8 border-t-2 border-red-400"></span>
+                        <span class="flex items-center">
+                            <span class="w-8 h-8 rounded-full step-3 flex items-center justify-center">3</span>
+                            <span class="ml-2">Confirm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>         
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">Your Order</h2>
+                    <div class="space-y-4">
+                        {% for item in order_summary %}
+                        <div class="flex items-center justify-between border-b pb-4">
+                            <div class="flex items-center space-x-4">
+                                <img src="{{ item.image_url }}" alt="{{ item.name }}" class="w-20 h-20 rounded-lg food-item-img object-cover"/>
+                                <div>
+                                    <h3 class="font-semibold">{{ item.name }}</h3>
+                                    <p class="text-gray-600">Quantity: {{ item.quantity }}</p>
+                                </div>
+                            </div>
+                            <p class="font-bold">${{ item.item_total | round(2) }}</p>
+                        </div>
+                        {% endfor %}
+                        
+                        <!-- Promo Code Section -->
+                        <form method="POST" action="{{ url_for('checkout.payment') }}" class="mt-4 border-b pb-4">
+                            <div class="flex space-x-2">
+                                <input name="coupon_code" type="text" placeholder="Enter promo code" class="flex-1 p-2 border rounded focus:ring-2 focus:ring-red-500 focus:border-transparent"/>
+                                <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Apply</button>
+                            </div>
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <p class="text-red-600 mt-2">{{ messages[0] }}</p>
+                            {% endif %}
+                            {% endwith %}
+                        </form>
+        
+                        <!-- Summary Totals -->
+                        <div class="mt-4 space-y-2 bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span>${{ subtotal | round(2) }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Tax</span>
+                                <span>${{ tax | round(2) }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Delivery Fee</span>
+                                <span>${{ fee | round(2) }}</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-lg pt-2 border-t">
+                                <span>Total</span>
+                                <span>${{ total | round(2) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="space-y-6">
+                   <!-- Delivery Address -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-4">Delivery Address</h2>
+                        <div class="space-y-4">
+                            <!-- Dropdown to select address type -->
+                            <div>
+                                <label class="block text-gray-700 mb-2">Select Address</label>
+                                <select id="addressType" class="w-full p-2 border rounded">
+                                    <option value="" disabled selected>Select Address</option>
+                                    {% for address in addresses %}
+                                        <option value="{{ address.type }}">{{ address.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Address Details (filled dynamically via AJAX) -->
+                            <div id="addressDetails">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Street Address</label>
+                                    <input type="text" id="streetAddress" class="w-full p-2 border rounded" readonly/>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Unit</label>
+                                    <input type="text" id="unit" class="w-full p-2 border rounded" readonly/>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">City</label>
+                                        <input type="text" id="city" class="w-full p-2 border rounded" readonly/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">State</label>
+                                        <input type="text" id="state" class="w-full p-2 border rounded" readonly/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Postal Code</label>
+                                    <input type="text" id="postalCode" class="w-full p-2 border rounded" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <form action="{{ url_for('checkout.confirm_payment') }}" method="POST" id="paymentForm">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h2 class="text-2xl font-bold mb-4">Payment Method</h2>
+                    
+                            <!-- Payment Options Tabs -->
+                            <div class="flex space-x-2 mb-6">
+                                <button type="button" id="ewalletBtn" class="payment-tab bg-red-600 text-white px-4 py-2 rounded-lg">E-Wallet</button>
+                                <button type="button" id="debitCardBtn" class="payment-tab bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">Debit Card</button>
+                                <button type="button" id="creditCardBtn" class="payment-tab bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">Credit Card</button>
+                            </div>
+                    
+                            <!-- Hidden inputs for form state -->
+                            <input type="hidden" name="payment_method" id="selectedPaymentMethod" value="E-Wallet" />
+                            <input type="hidden" name="ewallet_provider" id="selectedEwalletProvider" />
+                            <input type="hidden" name="selected_bank" id="selectedBank" />
+                    
+                            <!-- E-Wallet Options -->
+                            <div id="ewalletOptions" class="payment-options mb-6">
+                                <div class="grid grid-cols-3 gap-4">
+                                    <div class="payment-option cursor-pointer p-2 border-2 border-transparent hover:border-red-500 rounded-lg transition-all">
+                                        <img src="../static/images/e-wallet1.png" alt="GoPay" class="w-full h-auto" />
+                                    </div>
+                                    <div class="payment-option cursor-pointer p-2 border-2 border-transparent hover:border-red-500 rounded-lg transition-all">
+                                        <img src="../static/images/e-wallet2.png" alt="DANA" class="w-full h-auto" />
+                                    </div>
+                                    <div class="payment-option cursor-pointer p-2 border-2 border-transparent hover:border-red-500 rounded-lg transition-all">
+                                        <img src="../static/images/e-wallet3.png" alt="OVO" class="w-full h-auto" />
+                                    </div>
+                                </div>
+                                
+                                <!-- Phone Number Input for E-Wallet -->
+                                <div class="mb-6 mt-4">
+                                    <label class="block text-gray-700 mb-2">E-Wallet Phone Number</label>
+                                    <input type="tel" 
+                                           name="ewallet_phone" 
+                                           id="ewalletPhone"
+                                           class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                                           placeholder="08123456789"
+                                           />
+                                    <p class="text-sm text-gray-500 mt-1">Please enter a valid Indonesian phone number starting with 08 (10-14 digits)</p>
+                                </div>
+                            </div>
+                    
+                            <!-- Debit/Credit Card Options -->
+                            <div id="cardOptions" class="payment-options" style="display: none;">
+                                <div class="grid grid-cols-3 gap-4 mb-6">
+                                    <div class="payment-option cursor-pointer p-2 border-2 border-transparent hover:border-red-500 rounded-lg transition-all" data-bank="BCA">
+                                        <img src="../static/images/bank1.png" alt="BCA" class="w-full h-auto" />
+                                    </div>
+                                    <div class="payment-option cursor-pointer p-2 border-2 border-transparent hover:border-red-500 rounded-lg transition-all" data-bank="Mandiri">
+                                        <img src="../static/images/bank2.png" alt="Mandiri" class="w-full h-auto" />
+                                    </div>
+                                    <div class="payment-option cursor-pointer p-2 border-2 border-transparent hover:border-red-500 rounded-lg transition-all" data-bank="BRI">
+                                        <img src="../static/images/bank3.png" alt="BRI" class="w-full h-auto" />
+                                    </div>
+                                </div>
+                    
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Card Number</label>
+                                        <input type="text" 
+                                               name="card_number" 
+                                               id="cardNumber"
+                                               class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                                               placeholder="Enter your card number"
+                                               />
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-gray-700 mb-2">Expiry Date</label>
+                                            <input type="text" 
+                                                   name="card_expiry" 
+                                                   class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                                                   placeholder="MM/YY"
+                                                   pattern="(0[1-9]|1[0-2])\/([0-9]{2})"
+                                                   />
+                                        </div>
+                                        <div>
+                                            <label class="block text-gray-700 mb-2">CVV</label>
+                                            <input type="text" 
+                                                   name="card_cvv" 
+                                                   class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                                                   placeholder="123"
+                                                   pattern="[0-9]{3,4}"
+                                                   />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pay Now Button -->
+                        <button type="submit" class="w-full bg-red-600 text-white py-4 rounded-lg font-bold hover:bg-red-700 transition duration-200 mt-6">
+                            <span>Pay Now</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
