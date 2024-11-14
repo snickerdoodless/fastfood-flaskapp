@@ -49,21 +49,12 @@ git clone https://github.com/snickerdoodless/main_project.git
 ```
 
 ```bash
-sudo apt update ; sudo apt-get install -y apache2 libapache2-mod-wsgi-py3 mysql-server git unzip python3-dev python3-pip pkg-config libmysqlclient-dev  
+sudo apt update ; sudo apt-get install -y apache2 libapache2-mod-wsgi-py3 mysql-server unzip python3-dev python3-pip pkg-config libmysqlclient-dev  
 ```
 
 ```bash
-cd snickerdoodless/main_project
+cd snickerdoodless/main_project/flask-fastfood-webapp
 ```
-
-```bash
-git checkout flaskapp
-```
-
-```bash
-cd flask-fastfood-webapp
-```
-
 
 <br />
 
