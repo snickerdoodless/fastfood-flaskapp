@@ -8,6 +8,10 @@ Just Copy-Paste or Search Your Desired Music Video to Download
 
 <br />
 
+You can even organize your playlist 😎
+
+<br />
+
 ## Pre-Requisites
 
 You need to get your own Youtube API from Google Cloud
