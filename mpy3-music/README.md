@@ -29,6 +29,16 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
+Install [FFmpeg](https://www.ffmpeg.org/download.html) for Dependencies
+
+```bash
+sudo apt install ffmpeg -y
+```
+
+```powershell
+choco install ffmpeg
+``` 
+
 <br />
 
 ## Usage
