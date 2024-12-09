@@ -32,10 +32,12 @@ pip install -r requirements.txt
 Install [FFmpeg](https://www.ffmpeg.org/download.html) for Dependencies
 
 ```bash
+# for debian based
 sudo apt install ffmpeg -y
 ```
 
 ```powershell
+# for windows
 choco install ffmpeg
 ``` 
 
