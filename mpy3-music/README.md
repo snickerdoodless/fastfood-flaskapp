@@ -4,9 +4,6 @@
 ![](preview.png)
 
 Excellent Youtube to MP3 Downloader without ADS!! 
-
-<br />
-
 Just Copy-Paste or Search Your Desired Music Video to Download
 
 <br />
@@ -19,6 +16,10 @@ You need to get your own Youtube API from Google Cloud
 > [How to Get Youtube API](https://www.youtube.com/watch?v=LLAZUTbc97I) 
 
 Adjust the API on `mpy3.py`
+
+```python
+python -m venv venv
+```
 
 ```python
 pip install -r requirements.txt
