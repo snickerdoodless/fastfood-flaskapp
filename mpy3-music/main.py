@@ -17,7 +17,7 @@ def menu():
         print("4. Exit Program")
         print("\n============================================")
         
-        choice = input("Select an option (1-5): ")
+        choice = input("Select an option (1-4): ")
         
         if choice == '1':
             youtube_music()
