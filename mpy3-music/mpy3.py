@@ -5,8 +5,7 @@ import yt_dlp
 import webbrowser
 import isodate
 
-
-API = "USE_YOUR_OWN_API" # adjust your API
+API = "QlJVSCBVU0UgWU9VUiBPV04gQVBJIEtFWQ==" # adjust your API
  
 def youtube_music():
     query = input("Search Music Title: ")
@@ -56,7 +55,7 @@ def youtube_music():
                 }
 
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                    print(f"\n > Downloading: {selected_video['Title']}")
+                    print(f"\n > Downloading: {selected_video['Title']}\n")
                     ydl.download([f"https://youtube.com/watch?v={selected_video['Video ID']}"])
 
                 print("\n > Download Completed!")
@@ -66,8 +65,7 @@ def youtube_music():
                 print(f"\n > Error Occurred: {e}")
         else:
             break
-        
-
+         
 
 def youtube_link():
     link = input("Enter the URL: ").strip()
@@ -93,7 +91,6 @@ def youtube_link():
         ydl.download(link)
 
     print("\n > Download Completed!")
-
 
 
 def youtube_query(query):
@@ -145,37 +142,35 @@ def youtube_query(query):
         return []
 
 
-
 def organize_path():
     manager = DownloadPathManager()
-    current_path = DEFAULT_PATH  
+    current_path = DEFAULT_PATH
 
-    print("\n===== Available Location =====")
-    print("\n0. Add New Path")
-    for i, path in enumerate(manager.paths.values(), start=1):
-        print(f"{i}. {path}")
+    while True:
+        print("\n===== Available Location =====")
+        print("\n0. Add New Path")
+        for i, path in enumerate(manager.paths.values(), start=1):
+            print(f"{i}. {path}")
 
-    option = input("\nSelect Download Location (Press Enter for Default): ")
+        option = input("\nSelect Download Location (Press Enter for Default): ")
 
-    if option == "":
-        return current_path
-
-    if option.isdigit():
-        option = int(option)
-        if option == 0:
-            manager.add_paths()
-            return organize_path()  
-        elif 1 <= option <= len(manager.paths):
-            selected_path = list(manager.paths.values())[option - 1]
-            print(f"\n > Selected Path: {selected_path}")
-            return selected_path
-        else:
-            print("\n > ! Invalid Option. Returning Default Path.")
+        if option == "":  
+            print(f"\n > Using Default Path: {current_path}")
             return current_path
-    else:
-        print("\n > ! Invalid Input. Returning Default Path.")
-        return current_path
 
+        if option.isdigit(): 
+            option = int(option)
+            if option == 0:  
+                manager.add_paths()
+                continue 
+            elif 1 <= option <= len(manager.paths):  
+                selected_path = list(manager.paths.values())[option - 1]
+                print(f"\n > Selected Path: {selected_path}")
+                return selected_path
+            else:  
+                print("\n > ! Invalid Option. Try Again.")
+        else:  
+            print("\n > ! Invalid Input. Try Again.")
 
 
 def open_playlist():
