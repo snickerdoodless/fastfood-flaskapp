@@ -19,7 +19,7 @@ class DownloadPathManager:
                     return json.load(f)
             return {"default": DEFAULT_PATH}
         except Exception as e:
-            print(f"\n > Error Occurred: {e}")
+            print(f"\n > ! Error Occurred: {e}")
             return {"default": DEFAULT_PATH}
 
     def save_paths(self):
@@ -27,28 +27,34 @@ class DownloadPathManager:
             with open(CONFIG_FILE, "w") as f:
                 json.dump(self.paths, f, indent=4)
         except Exception as e:
-            print(f"Error Occurred: {e}")
+            print(f"\n > ! Error Occurred: {e}")
 
     def add_paths(self):
         while True:
             new_path = input("\nEnter New Location: ").strip()
+
+
             if not self.is_valid(new_path):
-                print("\n > ! Invalid Directory")
+                print("\n > ! Invalid Directory Format")
                 continue
 
             if new_path in self.paths.values():
                 print(f"\n > ! Location Exists: {new_path}")
-            else:
-                try:
-                    os.makedirs(new_path, exist_ok=True)
-                except Exception as e:
-                    print(f"\n > ! Error Occurred: {e}")
-                    continue
+                continue
 
-                self.paths[new_path] = new_path
-                self.save_paths()
-                print(f"\n > Success Adding: {new_path}")
-                break
+            try:
+                if not os.path.exists(new_path):
+                    print(f"\n > Directory Does not Exist. Creating: {new_path}")
+                    os.makedirs(new_path, exist_ok=True)
+            except Exception as e:
+                print(f"\n > ! Error Creating Directory: {e}")
+                continue
+
+            self.paths[new_path] = new_path
+            self.save_paths()
+            print(f"\n > Success Adding: {new_path}")
+            break
+
 
     def is_valid(self, path):
         # Directory format validation
@@ -61,14 +67,14 @@ class DownloadPathManager:
             return False
 
         try:
-            testfile = os.path.join(path, "test.txt")
-            with open(testfile, "w") as f:
-                f.write("test")
-            os.remove(testfile)
+            if not os.path.exists(path):  
+                os.makedirs(path, exist_ok=True)  
+                os.rmdir(path)  
             return True
         except (TypeError, OSError):
             return False
 
+# other utils
 def format_duration(seconds):
     if isinstance(seconds, str):
         return seconds
