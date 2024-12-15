@@ -109,7 +109,7 @@ cd /var/www/flaskapp
 ```
 
 ```bash
-sudo mv ~/snickerdoodless/main_project/flask-fastfood-app/* . 
+sudo mv ~/snickerdoodless/fastfood-flaskapp/flask-fastfood-app/* . 
 ```
 
 ```bash
