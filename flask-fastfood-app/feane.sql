@@ -19,6 +19,11 @@
 -- Table structure for table `address`
 --
 
+-- Create a new user 'feane' and grant privileges
+CREATE USER 'feane'@'localhost' IDENTIFIED BY 'your_secure_password';
+GRANT ALL PRIVILEGES ON feane.* TO 'feane'@'localhost';
+FLUSH PRIVILEGES;
+
 DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
