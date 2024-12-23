@@ -1,6 +1,6 @@
 # config.py
 class Config:
-    MYSQL_HOST = 'localhost'
+    MYSQL_HOST = '192.168.10.5'
     MYSQL_USER = 'feane'
     MYSQL_PASSWORD = 'your_secure_password'
     MYSQL_DB = 'feane'
