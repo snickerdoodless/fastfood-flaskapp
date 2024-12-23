@@ -36,6 +36,6 @@ pip install -r requirements.txt
 
 <br />
 
-> [!info]
+> [!note]
 > I use this project for [CI/CD](https://github.com/snickerdoodless/automate-ci-cd-deployment) deployment, if you want to clone and run this project change the ip in `config.py` to localhost.
 
