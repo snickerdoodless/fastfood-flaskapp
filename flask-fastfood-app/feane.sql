@@ -20,8 +20,8 @@
 --
 
 -- Create a new user 'feane' and grant privileges
-CREATE USER 'feane'@'localhost' IDENTIFIED BY 'your_secure_password';
-GRANT ALL PRIVILEGES ON feane.* TO 'feane'@'localhost';
+CREATE USER 'feane'@'%' IDENTIFIED BY 'your_secure_password';
+GRANT ALL PRIVILEGES ON feane.* TO 'feane'@'%';
 FLUSH PRIVILEGES;
 
 DROP TABLE IF EXISTS `address`;
